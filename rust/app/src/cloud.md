@@ -166,6 +166,8 @@ We have just triggered __Our Very First PineTime Firmware Build In The Cloud!__
 
 Let's check the result of our Firmware Build in the Cloud...
 
+[Check out this article to learn more about Clock.cpp](https://wiki.pine64.org/index.php?title=PineTime_Custom_Watchface_Tutorial)
+
 # Our First PineTime Firmware Build
 
 (Sorry our first build may fail with an error in `TwiMaster.cpp`... More about this in a while)
@@ -358,7 +360,9 @@ This works only Android, not iPhone. If you can help fix this, please chat with 
 
     Flash with [__PineTime Updater__](https://github.com/lupyuen/pinetime-updater/blob/master/README.md)...
 
-    -  Select `Downloaded File` and `pinetime-app.out`
+    -  Run `./run.sh`. Select `Latest Bootloader` to flash the latest bootloader
+
+    -  Then run `./run.sh` again. Select `Downloaded File` and `pinetime-app.out`
 
     -  Flash to address `0x0`
 
