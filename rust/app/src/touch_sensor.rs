@@ -16,7 +16,9 @@ use mynewt::{
 };
 
 /// Reset Pin for touch controller. Note: NFC antenna pins must be reassigned as GPIO pins for this to work.
-const TOUCH_RESET_PIN: i32 = 10;  //  P0.10/NFC2: TP_RESET
+// const TOUCH_RESET_PIN: i32 = 10;  //  P0.10/NFC2: TP_RESET
+// P8 pin
+const TOUCH_RESET_PIN: i32 = 13;  //  P0.13/NFC2: TP_RESET
 
 /// Interrupt Pin for touch controller. We listen for the touch controller interrupt and trigger an event.
 const TOUCH_INTERRUPT_PIN: i32 = 28;  //  P0.28/AIN4: TP_INT
