@@ -229,6 +229,12 @@ _Custom PineTime Watch Face by [SravanSenthiln1](https://twitter.com/SravanSenth
 
 # Other Options
 
+1.  _Can we change other files besides `Clock.cpp`?_
+
+    Sorry, the Simulator only renders the code in `Clock.cpp`
+
+    Any bitmaps and fonts will have to be embedded inside that file.
+
 1.  _Can we edit our files in GitHub without using the web browser?_
 
     We recommend [__VSCode__](https://code.visualstudio.com/) or [__VSCodium__](https://vscodium.com/) for editing files with [Git Version Control](https://code.visualstudio.com/docs/editor/versioncontrol). (Which works with GitHub files)
@@ -249,13 +255,19 @@ _Custom PineTime Watch Face by [SravanSenthiln1](https://twitter.com/SravanSenth
 
     [Self-Hosted Runners for GitHub Actions](https://docs.github.com/en/actions/hosting-your-own-runners)
 
+![Custom PineTime Watch Face by SravanSenthiln1 rendered by a TV's built-in web browser](https://lupyuen.github.io/images/simulator-tv.jpg)
+
+_Custom PineTime Watch Face by [SravanSenthiln1](https://twitter.com/SravanSenthiln1) rendered by a TV's built-in web browser_
+
 # What's Next?
 
 Here's what we'll be implementing next...
 
-1. __Accept Touch Input__ for LVGL
+1.  __Accept Touch Input__ for LVGL
 
-1. __Convert `Clock.cpp` from C++ to Rust__ with [`lvgl-rs`](https://github.com/rafaelcaricio/lvgl-rs)
+1.  __Convert `Clock.cpp` from C++ to Rust__ with [`lvgl-rs`](https://github.com/rafaelcaricio/lvgl-rs)
+
+    [Check out the `rust` branch of `lvgl-asm`](https://github.com/AppKaki/lvgl-wasm/blob/rust/README.md)
 
 1. Allow PineTime Watch Faces to be __built online in Rust with online preview__. Similar to [WebAssembly Studio](https://webassembly.studio/)
 
