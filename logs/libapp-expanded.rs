@@ -24,12 +24,8 @@
 //  Allow macro tracing: `trace_macros!(true)`
 #![feature(concat_idents)]
 //  Allow `concat_idents!()` macro used in `coap!()` macro
-#![feature(const_transmute)]
-//  Allow `transmute` for initialising Mynewt structs
 #![feature(proc_macro_hygiene)]
 //  Allow Procedural Macros like `run!()`
-#![feature(specialization)]
-//  Allow Specialised Traits for druid UI library
 #![feature(exclusive_range_pattern)]
 #[prelude_import]
 use core::prelude::v1::*;
@@ -53,40 +49,16 @@ mod app_network {
     //  Declare `app_sensor.rs` as Rust module `app_sensor` for Application Sensor functions
     //  Declare `touch_sensor.rs` as Rust module `touch_sensor` for Touch Sensor functions
 
-    //  Declare the optional modules depending on the options in `../Cargo.toml`
-    //  If graphics display app is enabled...
-    //  Include the graphics display app
-
-    //  If druid UI app is enabled...
-    //  Include the druid UI app
-
-    //  If Visual Rust app is enabled...
-    //  Don't warn about unused variables
-    //  Include the Visual Rust app
-
-    //  If CHIP8 Emulator app is enabled...
-    //  Include the CHIP8 Emulator app
-
-    //  If floating-point is enabled...
-    //  Include the GPS Sensor functions
-
     //  Declare the system modules
     //  Import `PanicInfo` type which is used by `panic()` below
     //  Import cortex_m assembly function to inject breakpoint
     //  Import Mynewt OS API
     //  Import Mynewt Console API
+    //  Import Watch Face Framework
 
-    //  Select the touch handler depending on the options in `../Cargo.toml`
-    //  If druid UI app is enabled...
-    //  Use the touch handler from druid UI app
 
-    //  If Visual Rust app is enabled...
-    //  Use the touch handler from the Visual Rust app
 
-    //  If CHIP8 Emulator app is enabled...
-    //  Use the touch handler from the CHIP8 Emulator app
-
-    //  If neither druid UI app nor Visual Rust app are enabled...
+    //  #[cfg(not(any(feature = "ui_app")))]  //  TODO: If no UI app is enabled...
     //  Define a touch handler that does nothing
 
     //  Don't mangle the name "main"
@@ -96,52 +68,49 @@ mod app_network {
     //  sysinit().  Here are the startup functions consolidated by Mynewt:
     //  bin/targets/nrf52_my_sensor/generated/src/nrf52_my_sensor-sysinit-app.c
 
-    //  Write graphic image to SPI Flash. Must run before testing the display, to avoid contention for SPI port.
-    //  extern { fn write_image() -> i32; }
-    //  let rc = unsafe { write_image() };
-    //  assert!(rc == 0, "IMG fail");
-
-    //  Display image from SPI Flash. Must run before testing the display, to avoid contention for SPI port.
-    /*
-    extern { fn display_image() -> i32; }
-    let rc = unsafe { display_image() };
-    assert!(rc == 0, "IMG fail");
-    */
-
-    //  Test External SPI Flash. Must run before testing the display, to avoid contention for SPI port.
-
     //  Start Bluetooth LE, including over-the-air firmware upgrade.  TODO: Create a safe wrapper for starting Bluetooth LE.
 
-    //  Start the display
+    //  Create the watch face
+    //  Unsafe because WATCH_FACE is a mutable static  
 
-    //  Test the display
-    //  If graphics display app is enabled...
+    //  Start rendering the watch face every minute
 
-    //  Start the touch sensor
+    //  Render LVGL watch face in C
+    //  extern { fn create_watch_face() -> i32; }  //  Defined in apps/my_sensor_app/src/watch_face.c
+    //  let rc = unsafe { create_watch_face() };
+    //  assert!(rc == 0, "Watch Face fail");
 
-    //  Test the touch sensor
-    //  touch_sensor::test()
-    //      .expect("TCH test fail");
+    //  Render LVGL widgets in C for testing
+    //  extern { fn pinetime_lvgl_mynewt_test() -> i32; }  //  Defined in libs/pinetime_lvgl_mynewt/src/pinetime/lvgl.c
+    //  let rc = unsafe { pinetime_lvgl_mynewt_test() };
+    //  assert!(rc == 0, "LVGL test fail");
 
-    //  Launch the druid UI app
-    //  If druid UI app is enabled...
+    //  Render LVGL display
+    //  extern { fn pinetime_lvgl_mynewt_render() -> i32; }  //  Defined in libs/pinetime_lvgl_mynewt/src/pinetime/lvgl.c
+    //  let rc = unsafe { pinetime_lvgl_mynewt_render() };
+    //  assert!(rc == 0, "LVGL render fail");    
 
-    //  Launch the Visual Rust app
-    //  If Visual Rust app is enabled...
-
-    //  Launch the CHIP8 Emulator app
-    //  If CHIP8 Emulator app is enabled...
-
-    //  Main event loop
+    //  Main event loop. Never add anything to the event loop because Bluetooth LE is extremely time sensitive.
     //  Loop forever...
     //  Processing events...
     //  From default event queue.
     //  Never comes here
 
+    //  Update the watch face
+    //  Unsafe because WATCH_FACE is a mutable static
+
     //  Display the filename and line number to the Semihosting Console.
-    //  Pause in the debugger.
+
     //  Display the payload.
-    //  Loop forever so that device won't restart.
+    //  Prevent panic loop while displaying the payload
+
+    //  Pause in the debugger.
+
+    //  Restart the device.
+    //  Defined in apps/my_sensor_app/src/support.c
+
+    //  Will never come here. This is needed to satisfy the return type "!"
+
     //!  Transmit sensor data to a CoAP server like thethings.io.  The CoAP payload will be encoded as JSON.
     //!  The sensor data will be transmitted over NB-IoT.
     //!  Note that we are using a patched version of apps/my_sensor_app/src/vsscanf.c that
@@ -151,7 +120,7 @@ mod app_network {
                  sys::console, encoding::coap_context::*,
                  libs::{sensor_network}, coap, d, Strn};
     use mynewt_macros::strn;
-    #[cfg(not (feature = "use_float"))]
+    #[cfg(not(feature = "use_float"))]
     pub fn aggregate_sensor_data(sensor_value: &SensorValue)
      -> MynewtResult<()> {
         send_sensor_data(sensor_value)
@@ -393,23 +362,29 @@ mod touch_sensor {
     use mynewt::{self, result::*, hw::hal, kernel::os::{self, os_event},
                  sys::console, fill_zero};
     /// Reset Pin for touch controller. Note: NFC antenna pins must be reassigned as GPIO pins for this to work.
+    #[allow(dead_code)]
     const TOUCH_RESET_PIN: i32 = 10;
     /// Interrupt Pin for touch controller. We listen for the touch controller interrupt and trigger an event.
+    #[allow(dead_code)]
     const TOUCH_INTERRUPT_PIN: i32 = 28;
     /// Reset GPIO Pin
+    #[allow(dead_code)]
     static mut TOUCH_RESET: MynewtGPIO =
         unsafe {
             ::core::mem::transmute::<[u8; ::core::mem::size_of::<MynewtGPIO>()],
                                      MynewtGPIO>([0;
                                                      ::core::mem::size_of::<MynewtGPIO>()])
         };
+    #[allow(dead_code)]
     static mut TOUCH_DELAY: MynewtDelay =
         unsafe {
             ::core::mem::transmute::<[u8; ::core::mem::size_of::<MynewtDelay>()],
                                      MynewtDelay>([0;
                                                       ::core::mem::size_of::<MynewtDelay>()])
         };
+    #[allow(dead_code)]
     type MynewtGPIO = mynewt::GPIO;
+    #[allow(dead_code)]
     type MynewtDelay = mynewt::Delay;
     /// Initialise the touch controller. NFC antenna pins must already be reassigned as GPIO pins:
     /// Set `NFC_PINS_AS_GPIO: 1` in hw/bsp/nrf52/syscfg.yml.  To check whether whether NFC antenna 
@@ -419,6 +394,7 @@ mod touch_sensor {
     /// let nfcpins = peripherals.UICR.nfcpins.read().bits();
     /// console::print("nfcpins = "); console::printhex(nfcpins as u8); console::print("\n");
     /// ```
+    #[allow(dead_code)]
     pub fn start_touch_sensor() -> MynewtResult<()> {
         console::print("Rust touch sensor\n");
         unsafe { TOUCH_RESET.init(TOUCH_RESET_PIN)? };
@@ -465,8 +441,7 @@ mod touch_sensor {
                                                                                                                        ::core::fmt::Debug::fmt),
                                                                                           ::core::fmt::ArgumentV1::new(arg2,
                                                                                                                        ::core::fmt::Display::fmt)],
-                                                                                     }),
-                                                     ::core::panic::Location::caller())
+                                                                                     }))
                     }
                 }
             }
@@ -493,6 +468,7 @@ mod touch_sensor {
         }
     }
     /// Touch data will be populated here
+    #[allow(dead_code)]
     static mut TOUCH_DATA: TouchEventInfo =
         unsafe {
             ::core::mem::transmute::<[u8; ::core::mem::size_of::<TouchEventInfo>()],
@@ -501,6 +477,7 @@ mod touch_sensor {
         };
     /// Read touch controller data. This only works when the screen has been tapped and the touch controller wakes up.
     /// Ported from https://github.com/lupyuen/hynitron_i2c_cst0xxse/blob/master/cst0xx_core.c#L407-L466
+    #[allow(dead_code)]
     fn read_touchdata(data: &mut TouchEventInfo) -> MynewtResult<()> {
         read_register_range(TOUCH_CONTROLLER_ADDRESS, 0, POINT_READ_BUF as u8,
                             unsafe {
@@ -547,10 +524,13 @@ mod touch_sensor {
         Ok(())
     }
     /// Buffer for raw touch data
+    #[allow(dead_code)]
     static mut BUF: [u8; POINT_READ_BUF] = [0; POINT_READ_BUF];
     /// Touch Controller I2C Address: https://github.com/lupyuen/hynitron_i2c_cst0xxse
+    #[allow(dead_code)]
     const TOUCH_CONTROLLER_ADDRESS: u8 = 0x15;
     /// Touch Event Info for multiple touches. Based on https://github.com/lupyuen/hynitron_i2c_cst0xxse/blob/master/cst0xx_core.h#L104-L115
+    #[allow(dead_code)]
     struct TouchEventInfo {
         /// Array of touch points
         touches: [TouchInfo; HYN_MAX_POINTS],
@@ -559,6 +539,7 @@ mod touch_sensor {
         point_num: u8,
     }
     /// Touch Info for a single touch. Based on https://github.com/lupyuen/hynitron_i2c_cst0xxse/blob/master/cst0xx_core.h#L104-L115
+    #[allow(dead_code)]
     struct TouchInfo {
         /// X coordinate
         x: u16,
@@ -574,22 +555,37 @@ mod touch_sensor {
         area: u8,
     }
     /// Max touch points for the touch controller
+    #[allow(dead_code)]
     const CFG_MAX_TOUCH_POINTS: usize = 5;
     /// Max touch channels for the touch controller
+    #[allow(dead_code)]
     const HYN_MAX_POINTS: usize = 10;
+    #[allow(dead_code)]
     const HYN_MAX_ID: u8 = 0x0F;
+    #[allow(dead_code)]
     const HYN_TOUCH_STEP: usize = 6;
+    #[allow(dead_code)]
     const HYN_TOUCH_X_H_POS: usize = 3;
+    #[allow(dead_code)]
     const HYN_TOUCH_X_L_POS: usize = 4;
+    #[allow(dead_code)]
     const HYN_TOUCH_Y_H_POS: usize = 5;
+    #[allow(dead_code)]
     const HYN_TOUCH_Y_L_POS: usize = 6;
+    #[allow(dead_code)]
     const HYN_TOUCH_EVENT_POS: usize = 3;
+    #[allow(dead_code)]
     const HYN_TOUCH_ID_POS: usize = 5;
+    #[allow(dead_code)]
     const FT_TOUCH_POINT_NUM: usize = 2;
+    #[allow(dead_code)]
     const HYN_TOUCH_XY_POS: usize = 7;
+    #[allow(dead_code)]
     const HYN_TOUCH_MISC: usize = 8;
+    #[allow(dead_code)]
     const POINT_READ_BUF: usize = 3 + (HYN_TOUCH_STEP * HYN_MAX_POINTS);
     /// Event that will be forwarded to the Event Queue when a touch interrupt is triggered
+    #[allow(dead_code)]
     static mut TOUCH_EVENT: os_event =
         unsafe {
             ::core::mem::transmute::<[u8; ::core::mem::size_of::<os_event>()],
@@ -597,6 +593,7 @@ mod touch_sensor {
                                                    ::core::mem::size_of::<os_event>()])
         };
     /// Read a range of I2C registers from the I2C address `addr` (7-bit address), starting at `start_register` for count `num_registers`. Save into `buffer`.
+    #[allow(dead_code)]
     fn read_register_range(addr: u8, start_register: u8, num_registers: u8,
                            buffer: &mut [u8]) -> MynewtResult<()> {
         if !(buffer.len() >= num_registers as usize) {
@@ -659,11 +656,13 @@ mod touch_sensor {
         Ok(())
     }
     /// I2C packet to be sent
+    #[allow(dead_code)]
     static mut I2C_DATA: hal::hal_i2c_master_data =
         hal::hal_i2c_master_data{address: 0,
                                  len: 0,
                                  buffer: core::ptr::null_mut(),};
     /// Buffer containing I2C read/write data
+    #[allow(dead_code)]
     static mut I2C_BUFFER: [u8; 1] = [0];
     /// Probe the I2C bus to discover I2C devices
     #[allow(dead_code)]
@@ -698,99 +697,19 @@ mod touch_sensor {
         Ok(())
     }
 }
-#[cfg(feature = "display_app")]
-mod display {
-    use embedded_graphics::{prelude::*, fonts, pixelcolor::Rgb565,
-                            primitives::{Circle, Rectangle}};
-    use mynewt::{result::*, sys::console};
-    use embedded_hal::{self, digital::v2::OutputPin,
-                       blocking::delay::DelayMs};
-    /// Render some graphics and text to the PineTime display. `start_display()` must have been called earlier.
-    pub fn test_display() -> MynewtResult<()> {
-        console::print("Rust test display\n");
-        console::flush();
-        let background =
-            Rectangle::<Rgb565>::new(Coord::new(0, 0),
-                                     Coord::new(239,
-                                                239)).fill(Some(Rgb565::from((0x00,
-                                                                              0x00,
-                                                                              0x00))));
-        let circle =
-            Circle::<Rgb565>::new(Coord::new(40, 40),
-                                  40).fill(Some(Rgb565::from((0xff, 0x00,
-                                                              0xff))));
-        let square =
-            Rectangle::<Rgb565>::new(Coord::new(60, 60),
-                                     Coord::new(150,
-                                                150)).fill(Some(Rgb565::from((0x00,
-                                                                              0x00,
-                                                                              0xff))));
-        let text =
-            fonts::Font12x16::<Rgb565>::render_str("I AM PINETIME").stroke(Some(Rgb565::from((0x00,
-                                                                                              0x00,
-                                                                                              0x00)))).fill(Some(Rgb565::from((0xff,
-                                                                                                                               0xff,
-                                                                                                                               0x00)))).translate(Coord::new(20,
-                                                                                                                                                             16));
-        druid::draw_to_display(background);
-        druid::draw_to_display(circle);
-        druid::draw_to_display(square);
-        druid::draw_to_display(text);
-        Ok(())
-    }
-    /// Test backlight
-    fn test_backlight() -> MynewtResult<()> {
-        let mut delay = mynewt::Delay::new();
-        let mut backlights =
-            [mynewt::GPIO::new(), mynewt::GPIO::new(), mynewt::GPIO::new()];
-        backlights[0].init(14)?;
-        backlights[1].init(22)?;
-        backlights[2].init(23)?;
-        let slower_pulse =
-            [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1,
-             1, 1];
-        let slow_pulse = [0, 0, 0, 1, 1, 1, 2, 2, 2, 1, 1, 1];
-        let fast_pulse = [0, 0, 1, 1, 2, 2, 1, 1];
-        let faster_pulse = [0, 1, 2, 1];
-        let fastest_pulse = [0, 2];
-        for _ in 0..1 {
-            for _ in 0..4 {
-                flash_backlight(&mut backlights, &mut delay, &slower_pulse)?;
-            }
-            for _ in 0..4 {
-                flash_backlight(&mut backlights, &mut delay, &slow_pulse)?;
-            }
-            for _ in 0..6 {
-                flash_backlight(&mut backlights, &mut delay, &fast_pulse)?;
-            }
-            for _ in 0..8 {
-                flash_backlight(&mut backlights, &mut delay, &faster_pulse)?;
-            }
-            for _ in 0..20 {
-                flash_backlight(&mut backlights, &mut delay, &fastest_pulse)?;
-            }
-        }
-        backlights[2].set_low()?;
-        Ok(())
-    }
-    /// Flash backlight according to the pattern: 0=Low, 1=Mid, 2=High
-    fn flash_backlight(backlights: &mut [mynewt::GPIO; 3],
-                       delay: &mut mynewt::Delay, pattern: &[i32])
-     -> MynewtResult<()> {
-        for brightness in pattern {
-            backlights[*brightness as usize].set_low()?;
-            delay.delay_ms(10);
-            backlights[*brightness as usize].set_high()?;
-        }
-        Ok(())
-    }
-}
 use core::panic::PanicInfo;
 use cortex_m::asm::bkpt;
-use mynewt::{kernel::os, sys::console};
-#[cfg(not
-      (any
-       (feature = "ui_app", feature = "visual_app", feature = "chip8_app")))]
+use mynewt::{fill_zero, kernel::os, sys::console, result::*};
+use watchface::{WatchFace, WatchFaceState};
+/// Declare the Watch Face Type
+type WatchFaceType = barebones_watchface::BarebonesWatchFace;
+/// Watch Face for the app
+static mut WATCH_FACE: WatchFaceType =
+    unsafe {
+        ::core::mem::transmute::<[u8; ::core::mem::size_of::<WatchFaceType>()],
+                                 WatchFaceType>([0;
+                                                    ::core::mem::size_of::<WatchFaceType>()])
+    };
 pub fn handle_touch(_x: u16, _y: u16) {
     console::print("touch not handled\n");
     console::flush();
@@ -801,25 +720,24 @@ pub fn handle_touch(_x: u16, _y: u16) {
 extern "C" fn main() -> ! {
     mynewt::sysinit();
     extern {
-        fn test_flash() -> i32;
-    }
-    let rc = unsafe { test_flash() };
-    if !(rc == 0) { ::core::panicking::panic("FLASH fail") };
-    extern {
-        fn start_ble() -> i32;
+        fn start_ble()
+        -> i32;
     }
     let rc = unsafe { start_ble() };
     if !(rc == 0) { ::core::panicking::panic("BLE fail") };
-    druid::start_display().expect("DSP fail");
-
-    #[cfg(feature = "display_app")]
-    display::test_display().expect("DSP test fail");
-    touch_sensor::start_touch_sensor().expect("TCH fail");
+    unsafe {
+        WATCH_FACE = WatchFaceType::new().expect("Create watch face fail");
+    }
+    watchface::start_watch_face(update_watch_face).expect("Watch Face fail");
     loop  {
         os::eventq_run(os::eventq_dflt_get().expect("GET fail")).expect("RUN fail");
     }
 }
-///  This function is called on panic, like an assertion failure. We display the filename and line number and pause in the debugger. From https://os.phil-opp.com/freestanding-rust-binary/
+/// Called every minute to update the Watch Face
+fn update_watch_face(state: &WatchFaceState) -> MynewtResult<()> {
+    unsafe { WATCH_FACE.update(state) }
+}
+/// This function is called on panic, like an assertion failure. We display the filename and line number and pause in the debugger. From https://os.phil-opp.com/freestanding-rust-binary/
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
     console::print("panic ");
@@ -833,9 +751,19 @@ fn panic(info: &PanicInfo) -> ! {
         console::print("\n");
         console::flush();
     } else { console::print("no loc\n"); console::flush(); }
+    if unsafe { !IN_PANIC } {
+        unsafe { IN_PANIC = true };
+        let payload = info.payload().downcast_ref::<&str>().unwrap();
+        console::print(payload);
+        console::print("\n");
+        console::flush();
+    }
     bkpt();
-    console::print(info.payload().downcast_ref::<&str>().unwrap());
-    console::print("\n");
-    console::flush();
+    extern {
+        fn HardFault_Handler();
+    }
+    unsafe { HardFault_Handler() };
     loop  { }
 }
+/// Set to true if we are already in the panic handler
+static mut IN_PANIC: bool = false;
