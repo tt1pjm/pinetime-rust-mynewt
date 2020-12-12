@@ -25,7 +25,6 @@
 
 //  Declare the libraries that contain macros
 extern crate cortex_m;                  //  Declare the external library `cortex_m`
-extern crate mynewt;                    //  Declare the Mynewt library
 extern crate macros as mynewt_macros;   //  Declare the Mynewt Procedural Macros library
 
 //  Declare the modules in our application
@@ -56,7 +55,6 @@ static mut WATCH_FACE: WatchFaceType = fill_zero!(WatchFaceType);
 //  #[cfg(not(any(feature = "ui_app")))]  //  TODO: If no UI app is enabled...
 pub fn handle_touch(_x: u16, _y: u16) { console::print("touch not handled\n"); console::flush(); }  //  Define a touch handler that does nothing
 
-///  Main program that initialises the sensor, network driver and starts reading and sending sensor data in the background.
 ///  main() will be called at Mynewt startup. It replaces the C version of the main() function.
 #[no_mangle]                 //  Don't mangle the name "main"
 extern "C" fn main() -> ! {  //  Declare extern "C" because it will be called by Mynewt

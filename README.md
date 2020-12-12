@@ -23,13 +23,57 @@
 
 ![PineTime Smart Watch with Apache Mynewt and Embedded Rust](https://lupyuen.github.io/images/pinetime-title.jpg)
 
-This `master` branch contains the firmware source code for PineTime Smart Watch with Apache Mynewt and Embedded Rust, with Wireless Firmware Updates, LVGL 7 (by embedding [`pinetime_lvgl_mynewt`](https://gitlab.com/lupyuen/pinetime_lvgl_mynewt)), Bluetooth LE Time Sync and Rust Watch Face.
+This `master` branch of `pinetime-rust-mynewt` contains the firmware source code for PineTime Smart Watch with...
 
-This branch no longer supports `druid` and `embedded-graphics`. Check out the older version in the [`pre-lvgl`](https://github.com/lupyuen/pinetime-rust-mynewt/tree/pre-lvgl) branch.
+1. [Apache Mynewt 1.7](https://mynewt.apache.org/), [Apache NimBLE 1.2](https://github.com/apache/mynewt-nimble) and [Embedded Rust (nightly build)](https://www.rust-lang.org/)
+
+1. [MCUBoot Bootloader 1.5](https://juullabs-oss.github.io/mcuboot/)
+
+`pinetime-rust-mynewt` is an Educational Embedded OS that supports...
+
+1. Wireless Firmware Updates over Bluetooth LE, based on MCU Manager's Simple Management Protocol
+
+1. LVGL UI Library Version 7, based on [`pinetime_lvgl_mynewt`](https://gitlab.com/lupyuen/pinetime_lvgl_mynewt)
+
+1. Time Sync with Bluetooth LE Current Time Service
+
+1. Rust Watch Faces from crates.io
+
+This branch no longer supports `druid`, `embedded-graphics` and Visual Rust. Check out the older version in the [`pre-lvgl`](https://github.com/lupyuen/pinetime-rust-mynewt/tree/pre-lvgl) branch.
 
 Refer to the articles...
 
 1. [_PineTime doesn't run Linux... But that's OK!_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/pinetime)
+
+1. [_Draw your own PineTime Watch Face... From WebAssembly to Embedded Rust_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/handdrawn)
+
+1. [_Create Your Own PineTime Watch Face in Rust... And Publish on crates.io_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/watchface)
+
+1. [_Bluetooth Time Sync and LVGL on PineTime Mynewt_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/timesync)
+
+1. [_Firmware Update over Bluetooth Low Energy on PineTime Smart Watch_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/dfu)
+
+1. [_Configure Mynewt for SPI Flash on PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/spiflash)
+
+1. [_MCUBoot Bootloader for PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/mcuboot)
+
+1. [_Wireless Firmware Update In Action on PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/dfutest)
+
+1. [_Your First Bluetooth Low Energy App with Flutter_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/flutter)
+
+1. [_Convert Go to Flutter and Dart for PineTime Companion App_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/companion)
+
+1. [_Your First GTK App with Go and VSCodium_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/gotk3)
+
+1. [_Flutter State Management with Bloc for PineTime Companion App_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/bloc)
+
+1. [_Auto Convert Go to Dart with an Abstract Syntax Tree_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/ast)
+
+1. [_My First Week As Embedded FOSS Advocate_](https://medium.com/@ly.lee/my-first-week-as-embedded-foss-advocate-106d625deae?source=friends_link&sk=4128d2bb8a7098658fafc462a1531d34)
+
+1. [_Rust Documentation_](https://lupyuen.github.io/pinetime-rust-mynewt/?1)
+
+The following articles were written for the older version of this firmware. Refer to the [`pre-lvgl`](https://github.com/lupyuen/pinetime-rust-mynewt/tree/pre-lvgl) branch for the source code...
 
 1. [_Visual Rust for PineTime Smart Watch_](https://marketplace.visualstudio.com/items?itemName=LeeLupYuen.visual-embedded-rust)
 
@@ -49,43 +93,23 @@ Refer to the articles...
 
 1. [_CHIP-8 Game Emulator in Rust for PineTime Smart Watch_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/chip8)
 
-1. [_Firmware Update over Bluetooth Low Energy on PineTime Smart Watch_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/dfu)
-
-1. [_Configure Mynewt for SPI Flash on PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/spiflash)
-
-1. [_MCUBoot Bootloader for PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/mcuboot)
-
-1. [_Wireless Firmware Update In Action on PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/dfutest)
-
 1. [_Porting MicroPython and wasp-os to Mynewt on PineTime Smart Watch (nRF52)_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/micropython)
 
-1. [_Your First Bluetooth Low Energy App with Flutter_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/flutter)
-
-1. [_Convert Go to Flutter and Dart for PineTime Companion App_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/companion)
-
-1. [_Your First GTK App with Go and VSCodium_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/gotk3)
-
-1. [_Flutter State Management with Bloc for PineTime Companion App_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/bloc)
-
-1. [_Auto Convert Go to Dart with an Abstract Syntax Tree_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/ast)
-
-1. [_My First Week As Embedded FOSS Advocate_](https://medium.com/@ly.lee/my-first-week-as-embedded-foss-advocate-106d625deae?source=friends_link&sk=4128d2bb8a7098658fafc462a1531d34)
-
-1. [_Rust Documentation_](https://lupyuen.github.io/pinetime-rust-mynewt/?1)
-
-[RSS Feed](https://lupyuen.github.io/rss.xml)
-
-The code structure is similar to the earlier article on nRF52...
+The firmware design is similar to this earlier article on nRF52...
 
 [_Coding nRF52 with Rust and Apache Mynewt on Visual Studio Code_](https://medium.com/@ly.lee/coding-nrf52-with-rust-and-apache-mynewt-on-visual-studio-code-9521bcba6004?source=friends_link&sk=bb4e2523b922d0870259ab3fa696c7da)
 
+[More Articles](https://lupyuen.github.io)
+
+[RSS Feed](https://lupyuen.github.io/rss.xml)
+
 # Automated Build with GitHub Actions
 
-The MCUBoot Bootloader and Rust+Mynewt Firmware are __built automatically__ in the GitHub Cloud. 
+The MCUBoot Bootloader and Rust + Mynewt Firmware are built automatically in the GitHub Cloud. 
 
-Just fork this repo, update the source code and the built firmware will be available for download under __"Actions"__.
+Just fork this repo, update the source code and the built firmware will be available for download under "Actions".
 
-The Automated Build is performed according to the following __GitHub Actions Workflow__...
+The Automated Build is performed according to the following GitHub Actions Workflow...
 
 [`.github/workflows/main.yml`](.github/workflows/main.yml)
 
@@ -93,6 +117,15 @@ The Worklow is similar to the one described in this article...
 
 [_Build PineTime Firmware in the Cloud with GitHub Actions_](https://lupyuen.github.io/pinetime-rust-mynewt/articles/cloud)
 
+# Automated Build with GitLab CI
+
+The MCUBoot Bootloader and Rust + Mynewt Firmware are also built automatically with GitLab CI.
+
+This repo is mirrored to GitLab as...
+
+[`gitlab.com/lupyuen/pinetime-rust-mynewt`](https://gitlab.com/lupyuen/pinetime-rust-mynewt)
+
+The GitLab CI Workflow is at [`.gitlab-ci.yml`](https://gitlab.com/lupyuen/pinetime-rust-mynewt/-/blob/master/.gitlab-ci.yml)
 
 # Build Instructions
 
@@ -100,23 +133,55 @@ If you are building from this repository from scratch instead of the Released Pa
 
 ## Install Build Tools
 
-1. Install OpenOCD from [xPack OpenOCD](https://xpack.github.io/openocd/). Other versions of OpenOCD are known to have problems flashing with ST-Link.
+1. Download and extract [xPack OpenOCD](https://xpack.github.io/openocd/install/). Other versions of OpenOCD are known to have problems flashing with ST-Link.
 
-    For Raspberry Pi: Install `openocd-spi` according to the instructions here...
+    - [xPack OpenOCD for Linux x64](https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15/xpack-openocd-0.10.0-15-linux-x64.tar.gz)
+
+    - [xPack OpenOCD for Linux Arm32](https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15/xpack-openocd-0.10.0-15-linux-arm.tar.gz)
+
+    - [xPack OpenOCD for Linux Arm64](https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15/xpack-openocd-0.10.0-15-linux-arm64.tar.gz)
+
+    - [xPack OpenOCD for macOS](https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15/xpack-openocd-0.10.0-15-darwin-x64.tar.gz)
+
+    - [xPack OpenOCD for Windows x64](https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.10.0-15/xpack-openocd-0.10.0-15-win32-x64.zip)
+
+    __For Linux with ST-Link (not Raspberry Pi):__ Download and extract xPack OpenOCD from above. Then install the ST-Link driver as follows...
+
+    ```bash
+    #  For Linux Only: Install UDEV Rules according to https://xpack.github.io/openocd/install/#udev
+    if [ -d /etc/udev/rules.d ]; then
+        sudo cp xpack-openocd/contrib/60-openocd.rules /etc/udev/rules.d/
+        sudo udevadm control --reload-rules
+    fi
+    ```
+
+    __For Windows:__ Download and extract xPack OpenOCD from above. Then install the ST-Link v2 Driver for Windows...
+
+    - Download the ST-Link USB driver from [ST-Link Driver Website](https://www.st.com/en/development-tools/stsw-link009.html) (email registration required)
+
+    - Click `Get Software`
+
+    - Unzip the downloaded file. Double-click the driver installer: `dpinst_amd64.exe`
+
+    __For Raspberry Pi:__ Install `openocd-spi` according to the instructions here...
 
     [_"OpenOCD on Raspberry Pi: Better with SWD on SPI"_](https://medium.com/@ly.lee/openocd-on-raspberry-pi-better-with-swd-on-spi-7dea9caeb590?source=friends_link&sk=df399bfd913d3e262447d28aa5af6b63)
 
 1.  Download the [Arm Embedded Toolchain 9-2020-q2-update](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads). Other versions of the toolchain are known to have problems building the firmware.
 
+    - [Embedded Toolchain for Linux x64](https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2?revision=05382cca-1721-44e1-ae19-1e7c3dc96118&la=en&hash=D7C9D18FCA2DD9F894FD9F3C3DC9228498FA281A)
+
+    - [Embedded Toolchain for Linux Arm32](https://github.com/lupyuen/pinetime-rust-mynewt/blob/master/scripts/install-pi.sh#L30-L41) (install via `apt`)
+
+    - [Embedded Toolchain for Linux Arm64](https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-aarch64-linux.tar.bz2?revision=7166404a-b4f5-4598-ac75-e5f8b90abb09&la=en&hash=01D713C1174E80C856385F5732E9BDC466DB729B)
+
+    - [Embedded Toolchain for macOS](https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-mac.tar.bz2?revision=d0d318de-b746-489f-98b0-9d89648ce910&la=en&hash=9E035CEF6261AA1387D3DCC8B86FA1A20E92B9AB)
+
+    - [Embedded Toolchain for Windows](https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-win32.exe?revision=50c95fb2-67ca-4df7-929b-55396266b4a1&la=en&hash=DE1CD6E7A15046FD1ADAF828EA4FA82228E682E2)
+
     __For Linux and macOS:__ Unzip the toolchain and add it to your PATH
 
-    __For Windows:__ Run the installer and check the option for `Add to PATH`. Also install the ST-Link v2 Driver for Windows...
-
-    - Download the ST-Link USB driver from [ST-Link Driver Website](https://www.st.com/en/development-tools/stsw-link009.html) (email registration required)
-
-    - Click Get Software
-
-    - Unzip the downloaded file. Double-click the driver installer: `dpinst_amd64.exe`
+    __For Windows:__ Run the installer and check the option for `Add to PATH`
 
 1. Install `rustup` with support for nightly target `thumbv7em-none-eabihf`. 
    
@@ -191,13 +256,6 @@ If you are building from this repository from scratch instead of the Released Pa
     newt install
     ```
 
-    __For Windows:__
-
-    ```cmd
-    cd \pinetime\pinetime-rust-mynewt
-    newt\newt install
-    ```
-
     We should see...
 
     ```
@@ -219,6 +277,17 @@ If you are building from this repository from scratch instead of the Released Pa
     ```
 
     Ignore the `mcuboot` error above and proceed to the next step.
+
+    __For Windows:__
+
+    ```cmd
+    cd \pinetime\pinetime-rust-mynewt
+    mkdir repos
+    xcopy /s patch\repos-windows repos
+    cd repos
+    git clone --recursive --branch mynewt_1_7_0_tag https://github.com/apache/mynewt-core.git apache-mynewt-core
+    git clone --recursive --branch nimble_1_2_0_tag https://github.com/apache/mynewt-nimble.git apache-mynewt-nimble
+    ```
 
 1. Restore the MCUBoot version number to 1.5.0. Edit [`pinetime/pinetime-rust-mynewt/project.yml`](https://github.com/lupyuen/pinetime-rust-mynewt/blob/master/project.yml)
 
@@ -252,19 +321,18 @@ If you are building from this repository from scratch instead of the Released Pa
 
     ```cmd
     cd \pinetime\pinetime-rust-mynewt\repos
-    rd /s mcuboot
     git clone --recursive --branch v1.5.0 https://github.com/JuulLabs-OSS/mcuboot
     ```
 
     Why are we doing this? Because we are using a more recent version of MCUBoot (1.5.0), but that's not in sync with the older Mynewt version (1.7.0). This will cause `newt install` to fail. Hence we do this workaround to force Mynewt to build with the newer MCUBoot.
 
-1. Copy the unzipped OpenOCD from [xPack OpenOCD](https://xpack.github.io/openocd/) or `openocd-spi` to the folder...
+1. Copy the unzipped OpenOCD from [xPack OpenOCD](https://xpack.github.io/openocd/install/) or `openocd-spi` to the folder...
 
     ```
-    pinetime-rust-mynewt/openocd
+    pinetime/pinetime-rust-mynewt/openocd
     ```
 
-    The `openocd` executable should be located at `pinetime-rust-mynewt/openocd/bin/openocd`
+    The `openocd` executable should be located at `pinetime/pinetime-rust-mynewt/openocd/bin/openocd`
 
 ## Build MCUBoot Bootloader
 
@@ -287,15 +355,16 @@ scripts\nrf52\build-boot.cmd
 We should see...
 
 ```
-Linking pinetime/pinetime-rust-mynewt/bin/targets/nrf52_boot/app/boot/mynewt/mynewt.elf
+Linking pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/bin/targets/nrf52_boot/app/boot/mynewt/mynewt.elf
 Target successfully built: targets/nrf52_boot
 + newt size -v nrf52_boot
 Size of Application Image: app
-Mem FLASH: 0x0-0x6000
+Mem FLASH: 0x0-0x7000
 Mem RAM: 0x20000000-0x20010000
   FLASH     RAM 
-     90     229 *fill*
-   6823    5996 boot_bootutil.a
+     97     230 *fill*
+    756       0 libgcc.a
+   6959    5996 boot_bootutil.a
     124       0 boot_mynewt.a
      18       0 boot_mynewt_flash_map_backend.a
    1182       0 crypto_mbedtls.a
@@ -303,24 +372,156 @@ Mem RAM: 0x20000000-0x20010000
      52       0 hw_cmsis-core.a
    1280      80 hw_drivers_flash_spiflash.a
     654       1 hw_hal.a
-   4192      72 hw_mcu_nordic_nrf52xxx.a
-   2006   18776 kernel_os.a
-   1930      12 libc_baselibc.a
-   1478     256 libs_pinetime_boot.a
-    529      40 libs_semihosting_console.a
-    544     128 sys_flash_map.a
+   4236      72 hw_mcu_nordic_nrf52xxx.a
+   1570   18772 kernel_os.a
+   2138      12 libc_baselibc.a
+   2049     260 libs_pinetime_boot.a
+    297      39 libs_semihosting_console.a
+    796     128 sys_flash_map.a
       2       0 sys_log_modlog.a
     632      29 sys_mfg.a
      30       5 sys_sysinit.a
      48       0 util_mem.a
     100       0 nrf52_boot-sysinit-app.a
-    756       0 libgcc.a
-Loading compiler pinetime/pinetime-rust-mynewt/repos/apache-mynewt-core/compiler/arm-none-eabi-m4, buildProfile debug
+Loading compiler pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/repos/apache-mynewt-core/compiler/arm-none-eabi-m4, buildProfile debug
 
 objsize
-   text    data     bss     dec     hex filename
-  22792     132   25504   48428    bd2c pinetime/pinetime-rust-mynewt/bin/targets/nrf52_boot/app/boot/mynewt/mynewt.elf
+   text	   data	    bss	    dec	    hex	filename
+  23220	    136	  25500	  48856	   bed8	pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/bin/targets/nrf52_boot/app/boot/mynewt/mynewt.elf
 ```
+
+This produces the MCUBoot Bootloader that we will flash to PineTime later...
+
+```
+pinetime/pinetime-rust-mynewt/bin/targets/nrf52_boot/app/boot/mynewt/mynewt.bin
+```
+
+## Build Application Firmware
+
+1. Build the Application Firmware...
+
+    __For Linux and macOS:__
+
+    ```bash
+    cd ~/pinetime/pinetime-rust-mynewt
+    scripts/build-app.sh
+    ```
+
+    __For Windows:__
+
+    ```cmd
+    cd \pinetime\pinetime-rust-mynewt
+    scripts\build-app.cmd
+    ```
+
+    If we see the error...
+
+    ```
+    pinetime/pinetime-rust-mynewt/repos/apache-mynewt-core/libc/baselibc/src/start.c:39:
+    undefined reference to `main'
+    ```
+    
+    Run `build-app` again. It should fix the error.
+
+    When the Application Firmware build succeds, we should see...
+
+    ```
+    Linking pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/bin/targets/nrf52_my_sensor/app/apps/my_sensor_app/my_sensor_app.elf
+    Target successfully built: targets/nrf52_my_sensor
+    + newt size -v nrf52_my_sensor
+    Warning: 6 02:26:22.562 [WARNING] Transient package @apache-mynewt-core/mgmt/newtmgr/transport/ble used, update configuration to use linked package instead (@apache-mynewt-core/mgmt/smp/transport/ble)
+    Warning: 6 02:26:22.562 [WARNING] Transient package @apache-mynewt-core/mgmt/newtmgr used, update configuration to use linked package instead (@apache-mynewt-core/mgmt/smp)
+    Size of Application Image: app
+    Mem FLASH: 0x8000-0x7bc00
+    Mem RAM: 0x20000000-0x20010000
+      FLASH     RAM 
+        655     368 *fill*
+       4829    2414 apps_my_sensor_app.a
+        962       4 boot_bootutil.a
+        181      38 boot_split.a
+       1814       0 cborattr.a
+       2371      72 cmd_img_mgmt.a
+       1113       0 cmd_img_mgmt_port_mynewt.a
+        723      12 cmd_os_mgmt.a
+        222      32 cmd_os_mgmt_port_mynewt.a
+       2408       0 crypto_tinycrypt.a
+        619       0 encoding_base64.a
+       3162       0 encoding_tinycbor.a
+        452     444 hw_bsp_nrf52.a
+         52       0 hw_cmsis-core.a
+       1530      92 hw_drivers_flash_spiflash.a
+        706       1 hw_hal.a
+       5992      89 hw_mcu_nordic_nrf52xxx.a
+          2       0 hw_sensor_creator.a
+       1266     256 hw_sensor.a
+       9098   27505 kernel_os.a
+       3302      50 libc_baselibc.a
+         16       0 libs_mynewt_rust.a
+     161547    9868 libs_pinetime_lvgl_mynewt.a
+      33248     105 libs_rust_app.a
+        405      39 libs_semihosting_console.a
+        737     212 libs_temp_stub.a
+        376      12 mgmt_imgmgr.a
+        413      12 mgmt.a
+        490       4 mgmt_smp.a
+        486     126 mgmt_smp_transport_ble.a
+      35492    2152 nimble_controller.a
+       4150    1203 nimble_drivers_nrf52.a
+      44674    2713 nimble_host.a
+        874     218 nimble_host_services_ans.a
+        277     112 nimble_host_services_dis.a
+        468     118 nimble_host_services_gap.a
+        252      62 nimble_host_services_gatt.a
+       1818     652 nimble_host_store_config.a
+        108       0 nimble_host_util.a
+        788    1096 nimble_transport_ram.a
+        776       0 smp.a
+       1357      42 sys_config.a
+        794     128 sys_flash_map.a
+          2       0 sys_log_modlog.a
+        668      29 sys_mfg.a
+       1395      67 sys_reboot.a
+         30       5 sys_sysinit.a
+       1200       0 time_datetime.a
+        120       0 util_mem.a
+        500       0 util_scfg.a
+        124       0 util.a
+        180       0 nrf52_my_sensor-sysinit-app.a
+    Loading compiler pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/repos/apache-mynewt-core/compiler/arm-none-eabi-m4, buildProfile debug
+
+    objsize
+       text	   data	    bss	    dec	    hex	filename
+     335072	   1132	  48820	 385024	  5e000	pinetime/pinetime-rust-mynewt/pinetime-rust-mynewt/bin/targets/nrf52_my_sensor/app/apps/my_sensor_app/my_sensor_app.elf
+    ```
+
+1. Create the application firmware image...
+
+    __For Linux and macOS:__
+
+    ```bash
+    cd ~/pinetime/pinetime-rust-mynewt
+    scripts/nrf52/image-app.sh
+    ```
+
+    __For Windows:__
+
+    ```cmd
+    cd \pinetime\pinetime-rust-mynewt
+    scripts\nrf52\image-app.cmd
+    ```
+
+    We should see...
+
+    ```
+    App image successfully generated: 
+    pinetime/pinetime-rust-mynewt/bin/targets/nrf52_my_sensor/app/apps/my_sensor_app/my_sensor_app.img
+    ```
+
+1. This produces the application firmware image that we will flash to PineTime later...
+
+    ```
+    pinetime/pinetime-rust-mynewt/bin/targets/nrf52_my_sensor/app/apps/my_sensor_app/my_sensor_app.img
+    ```
 
 ## Select the OpenOCD Interface: ST-Link or Raspberry Pi SPI
 
@@ -369,12 +570,14 @@ __For Windows:__ We don't need to edit `config.sh`
     __For Linux and macOS:__
 
     ```bash
+    cd ~/pinetime/pinetime-rust-mynewt
     scripts/nrf52/flash-boot.sh
     ```
 
-    __Windows:__
+    __For Windows:__
 
     ```cmd
+    cd \pinetime\pinetime-rust-mynewt
     scripts\nrf52\flash-boot.cmd
     ```
 
@@ -429,38 +632,6 @@ __For Windows:__ We don't need to edit `config.sh`
 
 1.  If the flashing fails, check whether any `openocd` processes are running in the background, and kill them.
 
-## Build Application Firmware
-
-1. Build the Application Firmware...
-
-    __For Linux and macOS:__
-
-    ```bash
-    scripts/build-app.sh
-    ```
-
-    __For Windows:__
-
-    ```cmd
-    scripts\build-app.cmd
-    ```
-
-    If we see the error `Undefined main`, run `build-app` again. It should fix the error.
-
-1. Create the application firmware image...
-
-    __For Linux and macOS:__
-
-    ```bash
-    scripts/nrf52/image-app.sh
-    ```
-
-    __For Windows:__
-
-    ```bash
-    scripts\nrf52\image-app.cmd
-    ```
-
 ## Flash Application Firmware
 
 1.  __For Linux and macOS:__ Edit [`pinetime/pinetime-rust-mynewt/scripts/nrf52/flash-app.sh`](https://github.com/lupyuen/pinetime-rust-mynewt/blob/master/scripts/nrf52/flash-app.sh)
@@ -487,12 +658,14 @@ __For Windows:__ We don't need to edit `config.sh`
     __For Linux and macOS:__
 
     ```bash
+    cd ~/pinetime/pinetime-rust-mynewt
     scripts/nrf52/flash-app.sh
     ```
 
-    __Windows:__
+    __For Windows:__
     
-    ```bash
+    ```cmd
+    cd \pinetime\pinetime-rust-mynewt
     scripts\nrf52\flash-app.cmd
     ```
 
@@ -576,9 +749,11 @@ __For Windows:__ We don't need to edit `config.sh`
     NET standalone node 
     ```
 
+Logging of debug messages is disabled by default. To enable debug logging, see the section "Semihosting Logging" below.
+
 # PineTime Updater
 
-Alternatively, flash the following two files to PineTime with [__PineTime Updater__](https://github.com/lupyuen/pinetime-updater)...
+Alternatively (for Linux and macOS only), flash the following two files to PineTime with [__PineTime Updater__](https://github.com/lupyuen/pinetime-updater)...
 
 1.  __MCUBoot Bootloader__
 
@@ -586,118 +761,134 @@ Alternatively, flash the following two files to PineTime with [__PineTime Update
 
     Address: `0x0`
 
-1.  __Rust+Mynewt Firmware__
+1.  __Rust + Mynewt Firmware__
 
     File: `bin/targets/nrf52_my_sensor/app/apps/my_sensor_app/my_sensor_app.elf`
 
     Address: `0x8000`
 
+# Remote PineTime
+
+If you don't have a PineTime, try flashing and testing on [__Remote PineTime__](https://github.com/lupyuen/remote-pinetime-bot/blob/master/README.md) instead. Remote PineTime is a real PineTime watch that's connected 24x7 to the internet... For anyone to flash and test firmware from anywhere in the world.
+
+Upload the built firmware file `my_sensor_app.img` as a GitHub Release and flash to Remote PineTime...
+
+1.  In you GitHub repo, click `Releases`
+
+1.  Click `Draft A New Release`
+
+1.  Fill in the `Tag Version` and `Release Title`
+
+1.  Attach the firmware file `my_sensor_app.img`
+
+1.  Click `Publish Release`
+
+1.  Under `Assets`, copy the URL of the firmware file `my_sensor_app.img`
+
+1.  Follow the steps here to flash the MCUBoot Bootloader and our firmware URL to Remote PineTime...
+
+    [Remote PineTime](https://github.com/lupyuen/remote-pinetime-bot/blob/master/README.md)
+
 # Installation, Build, Flash and Debug Logs
 
 Sample logs for Linux, macOS and Windows may be found in the [logs folder](logs)
+
+Also check the [GitHub Actions build logs](https://github.com/lupyuen/pinetime-rust-mynewt/actions)
+
+# Semihosting Logging
+
+Logging of debug messages is disabled by default. To enable Semihosting Logging, comment out this line (by inserting `#` at the start of the line)...
+
+```
+- -DDISABLE_SEMIHOSTING  #  Uncomment to disable Arm Semihosting. Must be uncommented for production.
+```
+
+For Bootloader: [`targets/nrf52_boot/pkg.yml`](targets/nrf52_boot/pkg.yml)
+
+For Application Firmware: [`targets/nrf52_my_sensor/pkg.yml`](targets/nrf52_my_sensor/pkg.yml)
+
+Rebuild the Bootloader and Application Firmware and flash to PineTime. Debug messages will now appear in the OpenOCD log.
+
+[More about Arm Semihosting](https://github.com/lupyuen/remote-pinetime-bot/blob/master/README.md#what-is-arm-semihosting)
+
+# VSCode Workspace
+
+Open the workspace file `workspace.code-workspace` in VSCode.
+
+The VSCode Workspace contains VSCode Tasks for building and flashing the Bootloader and Application Firmware.
+
+The Cortex-Debug Debugger in VSCode has also been configured for debugging PineTime with GDB and OpenOCD.
 
 # Contents
 
 This repository contains...
 
-[`rust`](rust): Rust Application
+- [`rust`](rust): Mynewt Application in Rust
 
-[`Cargo.toml`](Cargo.toml): Rust Build Settings
+- [`Cargo.toml`](Cargo.toml): Rust Build Settings
 
-[`.cargo`](.cargo): Rust Target Settings
+- [`.cargo`](.cargo): Rust Target Settings
 
-[`my_sensor_app`](apps/my_sensor_app): Mynewt Application Stub
+- [`apps/my_sensor_app`](apps/my_sensor_app): Mynewt Application in C
 
-[`boot_stub`](apps/boot_stub): Mynewt Bootloader Stub
+- [`apps/boot_stub`](apps/boot_stub): Mynewt Bootloader Stub. For development use only.
 
-[`adc_stm32f1`](libs/adc_stm32f1): Mynewt Driver for ADC on STM32 F103 (Blue Pill). Used by `temp_stm32` internal temperature sensor.
+- [`targets/nrf52_boot`](targets/nrf52_boot): Mynewt Application Firmware Configuration
 
-[`adc_stm32l4`](libs/adc_stm32l4): Mynewt Driver for ADC on STM32 L476. Used by `temp_stm32` internal temperature sensor.
+- [`targets/nrf52_my_sensor`](targets/nrf52_my_sensor): MCUBoot Bootloader Configuration
 
-[`bc95g`](libs/bc95g): Mynewt Driver for Quectel BC95 NB-IoT module
+- [`hw/bsp/nrf52`](hw/bsp/nrf52): Mynewt Board Support Package for PineTime
 
-[`buffered_serial`](libs/buffered_serial): Buffered Serial Library used by `bc95g` NB-IoT driver and `gps_l70r` GPS driver
+- [`scripts`](scripts): Build and flash scripts
 
-[`custom_sensor`](libs/custom_sensor): Custom Sensor Definitions for Raw Temperature and Geolocation
+- [`workspace.code-workspace`](workspace.code-workspace): VSCode Workspace
 
-[`esp8266`](libs/esp8266): Mynewt Driver for ESP8266 WiFi module
+- [`.vscode`](.vscode): VSCode Tasks for build and flash, and debugger configuration
 
-[`gps_l70r`](libs/gps_l70r): Mynewt Driver for Quectel L70-R GPS module
+Library modules for Mynewt...
 
-[`hmac_prng`](libs/hmac_prng): HMAC pseudorandom number generator with entropy based on internal temperature sensor
+- [`libs/mynewt_rust`](libs/mynewt_rust): Helper functions for hosting Rust on Mynewt
 
-[`low_power`](libs/low_power): Low Power functions for STM32 F103 (Blue Pill)
+- [`libs/pinetime_boot`](libs/pinetime_boot): PineTime Bootloader Extensions for MCUBoot Bootloader
 
-[`mynewt_rust`](libs/mynewt_rust): Helper functions for hosting Rust on Mynewt
+- [`libs/pinetime_lvgl_mynewt`](libs/pinetime_lvgl_mynewt): LVGL UI Library for Mynewt. Links to the [`pinetime_lvgl_mynewt`](https://gitlab.com/lupyuen/pinetime_lvgl_mynewt) repo.
 
-[`nrf24l01`](libs/nrf24l01): Mynewt Driver for nRF24L01
+- [`libs/rust_app`](libs/rust_app): Stub library that will be replaced by the compiled Rust application and Rust crates
 
-[`remote_sensor`](libs/remote_sensor): Mynewt Driver for Remote Sensor
+- [`libs/rust_libcore`](libs/rust_libcore): (Not Used) Stub library that will be replaced by the Rust Core Library
 
-[`rust_app`](libs/rust_app): Stub library that will be replaced by the compiled Rust application and Rust crates
+- [`libs/semihosting_console`](libs/semihosting_console): Mynewt Console for Arm Semihosting
 
-[`rust_libcore`](libs/rust_libcore): Stub library that will be replaced by the Rust Core Library
+Legacy modules for Mynewt that are not used...
 
-[`semihosting_console`](libs/semihosting_console): Mynewt Console for Arm Semihosting
+- [`libs/adc_stm32f1`](libs/adc_stm32f1): Mynewt Driver for ADC on STM32 F103 (Blue Pill). Used by `temp_stm32` internal temperature sensor.
 
-[`sensor_coap`](libs/sensor_coap): Sensor CoAP Library
+- [`libs/adc_stm32l4`](libs/adc_stm32l4): Mynewt Driver for ADC on STM32 L476. Used by `temp_stm32` internal temperature sensor.
 
-[`sensor_network`](libs/sensor_network): Sensor Network Library
+- [`libs/bc95g`](libs/bc95g): Mynewt Driver for Quectel BC95 NB-IoT module
 
-[`temp_stm32`](libs/temp_stm32): Mynewt Driver for Internal Temperature Sensor on STM32
+- [`libs/buffered_serial`](libs/buffered_serial): Buffered Serial Library used by `bc95g` NB-IoT driver and `gps_l70r` GPS driver
 
-[`temp_stub`](libs/temp_stub): Mynewt Driver for Stub Temperature Sensor that returns a fixed value
+- [`libs/custom_sensor`](libs/custom_sensor): Custom Sensor Definitions for Raw Temperature and Geolocation
 
-[`tiny_gps_plus`](libs/tiny_gps_plus): TinyGPS++ Library ported from Arduino. Used by `gps_l70r` GPS driver.
+- [`libs/esp8266`](libs/esp8266): Mynewt Driver for ESP8266 WiFi module
 
-[`scripts`](scripts): Install, build and deploy scripts
+- [`libs/gps_l70r`](libs/gps_l70r): Mynewt Driver for Quectel L70-R GPS module
 
-[`.vscode`](.vscode): Visual Studio Code macros for install, build and deploy
+- [`libs/hmac_prng`](libs/hmac_prng): HMAC pseudorandom number generator with entropy based on internal temperature sensor
 
-# How This Application Was Created
+- [`libs/low_power`](libs/low_power): Low Power functions for STM32 F103 (Blue Pill)
 
-The Windows version of the `newt` command-line tool in `newt/newt.exe` was created from 
+- [`libs/nrf24l01`](libs/nrf24l01): Mynewt Driver for nRF24L01
 
-[`github.com/lupyuen/mynewt-newt`](https://github.com/lupyuen/mynewt-newt)
+- [`libs/remote_sensor`](libs/remote_sensor): Mynewt Driver for Remote Sensor
 
-The Mynewt application was originally based on: 
+- [`libs/sensor_coap`](libs/sensor_coap): Sensor CoAP Library
 
-[`mynewt.apache.org/latest/tutorials/sensors/sensor_thingy_lis2dh12_onb.html`](https://mynewt.apache.org/latest/tutorials/sensors/sensor_thingy_lis2dh12_onb.html)
+- [`libs/sensor_network`](libs/sensor_network): Sensor Network Library
 
-[`mynewt.apache.org/latest/tutorials/sensors/sensor_nrf52_bno055.html`](https://mynewt.apache.org/latest/tutorials/sensors/sensor_nrf52_bno055.html)
+- [`libs/temp_stm32`](libs/temp_stm32): Mynewt Driver for Internal Temperature Sensor on STM32
 
-```bash
-cd /mnt/c
-newt new stm32bluepill-mynewt-sensor
-cd stm32bluepill-mynewt-sensor
-cat project.yml
+- [`libs/temp_stub`](libs/temp_stub): Mynewt Driver for Stub Temperature Sensor that returns a fixed value
 
-newt install
-newt pkg new -t app apps/my_sensor_app
-newt pkg new -t lib libs/semihosting_console
-
-newt target create bluepill_boot
-newt target set bluepill_boot bsp=@apache-mynewt-core/hw/bsp/bluepill
-newt target set bluepill_boot app=@apache-mynewt-core/apps/boot
-newt target set bluepill_boot build_profile=optimized
-
-newt target create bluepill_my_sensor
-newt target set bluepill_my_sensor bsp=@apache-mynewt-core/hw/bsp/bluepill
-newt target set bluepill_my_sensor app=apps/my_sensor_app
-newt target set bluepill_my_sensor build_profile=debug
-```
-
-`project.yml` should contain
-
-```yaml
-project.name: "my_project"
-
-project.repositories:
-    - apache-mynewt-core
-
-repository.apache-mynewt-core:
-    type: github
-    vers: 1.7.0
-    user: apache
-    repo: mynewt-core
-```
+- [`libs/tiny_gps_plus`](libs/tiny_gps_plus): TinyGPS++ Library ported from Arduino. Used by `gps_l70r` GPS driver.
